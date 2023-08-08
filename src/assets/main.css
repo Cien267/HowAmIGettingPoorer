@@ -1,0 +1,59 @@
+@import './base.css';
+
+* {
+  font-family: 'HelveticaNeue';
+  /* fix focus gray when click IOS */
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  margin: 0;
+  padding: 0;
+  position: fixed;
+}   
+body {
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        background-color: black;
+      }
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: normal;
+}
+body::-webkit-scrollbar{
+  display: none;
+}
+a {
+  text-decoration: none;
+  transition: 0.4s;
+  color: black
+}
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
