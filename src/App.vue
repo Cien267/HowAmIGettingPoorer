@@ -1,34 +1,40 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref, onMounted } from 'vue'
+const date = new Date()
+const currentMonth = date.getMonth() + 1
+const currentYear = date.getFullYear()
+const activeClass = 'text-activeGreen border-activeGreen'
+let chosenMonth = ref(currentMonth)
+
+onMounted(() => {
+  let element = document.getElementById('list-month');
+  element.scrollLeft = element?.scrollWidth;
+})
+
+
 </script>
 
 <template>
   
 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex overflow-scroll -mb-px text-sm font-medium text-center overflow-y-auto">
-        <li class="mr-2">
-            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-activeGreen hover:border-activeGreen dark:hover:text-activeGreen">This month</button>
+    <ul class="flex overflow-scroll -mb-px text-sm font-medium text-center overflow-y-auto" id="list-month">
+        <li  v-for="month in 12" class="mr-2" @click="changeMonth(month)">
+            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg ">
+              {{month}}/{{ currentYear - 1}}
+            </button>
         </li>
-        <li class="mr-2">
-            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-activeGreen hover:border-activeGreen dark:hover:text-activeGreen" >Dashboard</button>
+        <li  v-for="month in currentMonth" class="mr-2" @click="changeMonth(month)">
+            <button :class="month === chosenMonth ? activeClass : ''" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg ">
+              {{month}}/{{ currentYear }}
+            </button>
         </li>
-        <li class="mr-2">
-            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-activeGreen hover:border-activeGreen dark:hover:text-activeGreen" >Settings</button>
-        </li>
-        <li class="mr-2">
-            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-activeGreen hover:border-activeGreen dark:hover:text-activeGreen">This month</button>
-        </li>
-        <li class="mr-2">
-            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-activeGreen hover:border-activeGreen dark:hover:text-activeGreen" >Dashboard</button>
-        </li>
-        <li class="mr-2">
-            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-activeGreen hover:border-activeGreen dark:hover:text-activeGreen" >Settings</button>
-        </li>
+        
     </ul>
 </div>
 <div>
-  helo anh em
+  <div class="p-20">
+    aloo
+  </div>
 </div>
 
 
@@ -65,7 +71,13 @@ nav a {
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
 }
-
+#list-month {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+#list-month::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
 nav a:first-of-type {
   border: 0;
 }

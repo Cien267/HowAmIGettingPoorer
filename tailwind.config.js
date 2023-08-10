@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors: {
         activeGreen: 'hsla(160, 100%, 37%, 1)'
+      },
+      spacing: {
+        20: '20px'
       }
     }
   },
